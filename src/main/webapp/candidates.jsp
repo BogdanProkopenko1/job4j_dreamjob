@@ -2,12 +2,12 @@
   Created by IntelliJ IDEA.
   User: pvzar
   Date: 16.08.2021
-  Time: 16:40
+  Time: 20:09
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="ru.job4j.dream.store.Store" %>
-<%@ page import="ru.job4j.dream.model.Post" %>
+<%@ page import="ru.job4j.dream.model.Candidate" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,30 +25,31 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-    <title>Dream Job</title>
+    <title>Работа мечты</title>
 </head>
 <body>
 <div class="container pt-3">
+
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                <h1 align="center">Vacancies</h1>
+                <h1 align="center">Candidates</h1>
             </div>
             <div class="card-body">
                 <table class="table">
                     <thead>
                     <tr>
+                        <th scope="col">Position</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Date</th>
+                        <th scope="col">Skills</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <% for (Post post : Store.instOf().findAllPosts()) { %>
+                    <% for (Candidate can : Store.instOf().findAllCandidates()) { %>
                     <tr>
-                        <td><%= post.getName() %></td>
-                        <td><%= post.getDescription() %></td>
-                        <td><%= post.getCreated().getTime() %></td>
+                        <td><%= can.getPosition() %></td>
+                        <td><%= can.getName() %></td>
+                        <td><%= can.getSkills() %></td>
                     </tr>
                     <% } %>
                     </tbody>
