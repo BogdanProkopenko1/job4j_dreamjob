@@ -6,9 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="ru.job4j.dream.store.Store" %>
 <%@ page import="ru.job4j.dream.model.Candidate" %>
 <%@ page import="java.util.Collection" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -48,18 +48,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <% for (Candidate can : (Collection<Candidate>) request.getAttribute("candidates")) { %>
-                    <tr>
-                        <td><%=can.getPosition()%></td>
-                        <td><%=can.getName()%></td>
-                        <td><%=can.getSkills()%></td>
-                        <td>
-                            <a href="<%=request.getContextPath()%>/candidate/edit.jsp?id=<%=can.getId()%>">
-                                <i class="fa fa-edit mr-3"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <% } %>
+                    <c:forEach items="${candidates}" var="candidate">
+                        <tr>
+                            <td><c:out value="${candidate.position}"/></td>
+                            <td><c:out value="${candidate.name}"/></td>
+                            <td><c:out value="${candidate.skills}"/></td>
+                            <td>
+                                <a href='<c:url value="/candidate/edit.jsp?id=${candidate.id}"/>'>
+                                    <i class="fa fa-edit mr-3"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>
