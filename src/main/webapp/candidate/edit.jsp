@@ -35,14 +35,14 @@
                 New candidate.
             </div>
             <div class="card-body">
-                <form>
+                <form action="<%=request.getContextPath()%>/candidate/save" method="post">
                     <div class="form-group">
                         <label>Position</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="position">
                         <label>Name</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="name">
                         <label>Skills</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="skills">
                     </div>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>

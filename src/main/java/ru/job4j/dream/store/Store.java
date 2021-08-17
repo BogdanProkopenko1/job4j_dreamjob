@@ -46,4 +46,9 @@ public class Store {
         post.setId(POST_ID.incrementAndGet());
         posts.put(post.getId(), post);
     }
+
+    public void save(Candidate candidate) {
+        candidate.setId(CANDIDATE_ID.getAndIncrement());
+        candidates.put(candidate.getId(), candidate);
+    }
 }
