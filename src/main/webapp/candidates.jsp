@@ -44,7 +44,8 @@
                         <th scope="col">Position</th>
                         <th scope="col">Name</th>
                         <th scope="col">Skills</th>
-                        <th scope="col"></th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -54,9 +55,18 @@
                             <td><c:out value="${candidate.name}"/></td>
                             <td><c:out value="${candidate.skills}"/></td>
                             <td>
+                                <img src="<c:url value='/download?name=${candidate.id}'/>" width="100px" height="100px"/>
+                            </td>
+                            <td>
                                 <a href='<c:url value="/candidate/edit.jsp?id=${candidate.id}"/>'>
                                     <i class="fa fa-edit mr-3"></i>
                                 </a>
+                                <br>
+                                <a href="<c:url value='/candidate/upload.jsp?id=${candidate.id}'/>">Edit photo</a>
+                                <br>
+                                <form style="display: inline" action="<c:url value='/candidates.do?id=${candidate.id}&method=delete'/>" method="post">
+                                    <button>Delete candidate</button>
+                                </form>
                             </td>
                         </tr>
                     </c:forEach>

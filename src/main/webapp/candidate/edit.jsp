@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: pvzar
@@ -47,7 +48,7 @@
                 <% } %>
             </div>
             <div class="card-body">
-                <form action="<%=request.getContextPath()%>/candidates.do?id=<%=candidate.getId()%>" method="post">
+                <form action="<%=request.getContextPath()%>/candidates.do?id=<%=candidate.getId()%>&method=" method="post">
                     <div class="form-group">
                         <label>Name</label>
                         <input type="text" class="form-control" name="name" value="<%=candidate.getName()%>">
@@ -55,6 +56,13 @@
                         <input type="text" class="form-control" name="position" value="<%=candidate.getPosition()%>">
                         <label>Skills</label>
                         <input type="text" class="form-control" name="skills" value="<%=candidate.getSkills()%>">
+                        <br>
+                        <label>Photo</label>
+                        <br>
+                        <img src="<%= request.getContextPath()%>/download?name=<%=request.getParameter("id")%>" width="100px" height="100px"/>
+                        <br>
+                        <a href="<c:url value='/candidate/upload.jsp?id=<%=candidate.getId()%>'/>">Download</a>
+                        <br>
                     </div>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>
