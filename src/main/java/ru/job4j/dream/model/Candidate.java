@@ -67,4 +67,14 @@ public class Candidate {
     public int hashCode() {
         return Objects.hash(id, name, skills);
     }
+
+    @Override
+    public String toString() {
+        return "Candidate{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", skills='" + skills + '\'' +
+                ", position='" + position + '\'' +
+                '}';
+    }
 }
