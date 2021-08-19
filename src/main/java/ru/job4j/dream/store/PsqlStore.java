@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.job4j.dream.model.Candidate;
 import ru.job4j.dream.model.Post;
+import ru.job4j.dream.model.User;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -113,6 +114,48 @@ public class PsqlStore implements Store {
         } else {
             update(candidate);
         }
+    }
+
+    @Override
+    public void save(User user) {
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps =
+                     cn.prepareStatement(
+                             "INSERT INTO user(name, email, password) VALUES (?, ?, ?)",
+                             Statement.RETURN_GENERATED_KEYS
+                     )
+        ) {
+            ps.setString(1, user.getName());
+            ps.setString(2, user.getEmail());
+            ps.setString(3, user.getPassword());
+            ps.execute();
+        } catch (SQLException e) {
+            LOGGER.error("SQLException", e);
+        }
+    }
+
+    @Override
+    public User getUserOnEmailAndPassword(String email, String pass) {
+        User user = null;
+        try (Connection cn = pool.getConnection();
+            PreparedStatement ps = cn.prepareStatement("SELECT * FROM user WHERE email=? AND password=?")
+        ) {
+            ps.setString(1, email);
+            ps.setString(2, pass);
+            ps.execute();
+            ResultSet rsl = ps.getResultSet();
+            if (rsl.next()) {
+                user = new User(
+                        rsl.getInt("id"),
+                        rsl.getString("name"),
+                        rsl.getString("email"),
+                        rsl. getString("password")
+                );
+            }
+        } catch (SQLException e) {
+            LOGGER.error("SQLException", e);
+        }
+        return user;
     }
 
     private Post create(Post post) {
@@ -245,5 +288,17 @@ public class PsqlStore implements Store {
             LOGGER.error("SQLException", e);
         }
         return candidate;
+    }
+
+    @Override
+    public void deleteUser(int id) {
+        try (Connection cn = pool.getConnection();
+            PreparedStatement ps = cn.prepareStatement("DELETE FROM user WHERE id=?")
+        ) {
+            ps.setInt(1, id);
+            ps.execute();
+        } catch (SQLException e) {
+            LOGGER.error("SQLException", e);
+        }
     }
 }

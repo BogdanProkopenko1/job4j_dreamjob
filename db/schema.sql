@@ -11,3 +11,10 @@ CREATE TABLE candidate (
     skills TEXT,
     position TEXT
 );
+
+CREATE TABLE user (
+    id SERIAL PRIMARY KEY,
+    name TEXT,
+    email TEXT unique,
+    password TEXT
+);
