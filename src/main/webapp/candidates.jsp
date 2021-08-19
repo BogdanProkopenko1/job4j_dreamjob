@@ -62,7 +62,10 @@
                                     <i class="fa fa-edit mr-3"></i>
                                 </a>
                                 <br>
-                                <a href="<c:url value='/candidate/upload.jsp?id=${candidate.id}'/>">Edit photo</a>
+                                <a href="<c:url value='/candidate/upload.jsp?id=${candidate.id}'/>">
+                                    <button>Edit candidate</button>
+                                </a>
+                                <br>
                                 <br>
                                 <form style="display: inline" action="<c:url value='/candidates.do?id=${candidate.id}&method=delete'/>" method="post">
                                     <button>Delete candidate</button>

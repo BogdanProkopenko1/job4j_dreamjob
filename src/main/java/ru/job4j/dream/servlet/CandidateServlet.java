@@ -1,7 +1,7 @@
 package ru.job4j.dream.servlet;
 
 import ru.job4j.dream.model.Candidate;
-import ru.job4j.dream.store.MemStore;
+import ru.job4j.dream.store.PsqlStore;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +14,7 @@ public class CandidateServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        req.setAttribute("candidates", MemStore.instOf().findAllCandidates());
+        req.setAttribute("candidates", PsqlStore.instOf().findAllCandidates());
         req.getRequestDispatcher("candidates.jsp").forward(req, resp);
     }
 
@@ -22,10 +22,10 @@ public class CandidateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.setCharacterEncoding("UTF-8");
         if (req.getParameter("method") != null && req.getParameter("method").equals("delete")) {
-            int id = MemStore.instOf().deleteCandidate(Integer.parseInt(req.getParameter("id"))).getId();
+            int id = PsqlStore.instOf().deleteCandidate(Integer.parseInt(req.getParameter("id"))).getId();
             new File("c:/images/" + id + ".png").delete();
         } else {
-            MemStore.instOf().save(
+            PsqlStore.instOf().save(
                     new Candidate(
                             Integer.parseInt(req.getParameter("id")),
                             req.getParameter("name"),
