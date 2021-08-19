@@ -198,12 +198,13 @@ public class PsqlStore implements Store {
             ps.setInt(1, id);
             ps.execute();
             ResultSet rsl = ps.getResultSet();
-            rsl.next();
-            post = new Post(
-                    rsl.getInt("id"),
-                    rsl.getString("name"),
-                    rsl.getString("description")
-            );
+            if (rsl.next()) {
+                post = new Post(
+                        rsl.getInt("id"),
+                        rsl.getString("name"),
+                        rsl.getString("description")
+                );
+            }
         } catch (SQLException e) {
             LOGGER.error("SQLException", e);
         }
@@ -219,13 +220,14 @@ public class PsqlStore implements Store {
             ps.setInt(1, id);
             ps.execute();
             ResultSet rsl = ps.getResultSet();
-            rsl.next();
-            candidate = new Candidate(
-                    rsl.getInt("id"),
-                    rsl.getString("name"),
-                    rsl.getString("skills"),
-                    rsl.getString("position")
-            );
+            if (rsl.next()) {
+                candidate = new Candidate(
+                        rsl.getInt("id"),
+                        rsl.getString("name"),
+                        rsl.getString("skills"),
+                        rsl.getString("position")
+                );
+            }
         } catch (SQLException e) {
             LOGGER.error("SQLException", e);
         }
