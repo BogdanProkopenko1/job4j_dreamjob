@@ -18,7 +18,7 @@ public interface Store {
 
     void save(User user);
 
-    User getUserOnEmailAndPassword(String email, String pass);
+    User getUserOnEmail(String email);
 
     Post findPostById(int id);
 

@@ -44,6 +44,11 @@
             <input type="text" class="form-control" name="password">
           </div>
           <button type="submit" class="btn btn-primary">Sign in</button>
+          <% if (session.getAttribute("error") != null) { %>
+          <div style="color:red; font-weight: bold; margin: 30px 0;">
+            <%=request.getAttribute("error")%>
+          </div>
+          <% } %>
         </form>
       </div>
     </div>

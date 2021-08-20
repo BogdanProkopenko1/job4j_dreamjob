@@ -1,3 +1,4 @@
+<%@ page import="ru.job4j.dream.model.User" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <!doctype html>
@@ -35,18 +36,18 @@
             <li class="nav-item">
                 <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Add candidate</a>
             </li>
-            <c:choose>
-                <c:when test="${user != null}">
-                    <li class="nav-item">
-                        <a class="nav-link" href="<%=request.getContextPath()%>/logout.do">Out</a>
-                    </li>
-                </c:when>
-                <c:otherwise>
+            <% if (session.getAttribute("user") == null) { %>
                     <li class="nav-item">
                         <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">Sign in</a>
                     </li>
-                </c:otherwise>
-            </c:choose>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/reg.jsp">Registration</a>
+                </li>
+            <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%=request.getContextPath()%>/logout.do"><%=session.getAttribute("username")%> | Out</a>
+                    </li>
+            <% } %>
         </ul>
     </div>
     <div class="row">

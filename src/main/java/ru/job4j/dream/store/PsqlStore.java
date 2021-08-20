@@ -121,7 +121,7 @@ public class PsqlStore implements Store {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps =
                      cn.prepareStatement(
-                             "INSERT INTO user(name, email, password) VALUES (?, ?, ?)",
+                             "INSERT INTO users(name, email, password) VALUES (?, ?, ?)",
                              Statement.RETURN_GENERATED_KEYS
                      )
         ) {
@@ -135,13 +135,12 @@ public class PsqlStore implements Store {
     }
 
     @Override
-    public User getUserOnEmailAndPassword(String email, String pass) {
+    public User getUserOnEmail(String email) {
         User user = null;
         try (Connection cn = pool.getConnection();
-            PreparedStatement ps = cn.prepareStatement("SELECT * FROM user WHERE email=? AND password=?")
+            PreparedStatement ps = cn.prepareStatement("SELECT * FROM users WHERE email=?")
         ) {
             ps.setString(1, email);
-            ps.setString(2, pass);
             ps.execute();
             ResultSet rsl = ps.getResultSet();
             if (rsl.next()) {
@@ -293,7 +292,7 @@ public class PsqlStore implements Store {
     @Override
     public void deleteUser(int id) {
         try (Connection cn = pool.getConnection();
-            PreparedStatement ps = cn.prepareStatement("DELETE FROM user WHERE id=?")
+            PreparedStatement ps = cn.prepareStatement("DELETE FROM users WHERE id=?")
         ) {
             ps.setInt(1, id);
             ps.execute();

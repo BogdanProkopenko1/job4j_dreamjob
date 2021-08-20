@@ -48,6 +48,10 @@ public class User {
         this.password = password;
     }
 
+    public boolean finished() {
+        return !name.equals("") && !email.equals("") && !password.equals("");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
