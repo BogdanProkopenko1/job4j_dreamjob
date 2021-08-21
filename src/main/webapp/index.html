@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: pvzar
-  Date: 20.08.2021
-  Time: 22:12
-  To change this template use File | Settings | File Templates.
---%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +7,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        function validate() {
+            alert($('#firName').val());
+            alert($('#secName').val());
+            alert($('#exampleFormControlTextarea1').val());
+            alert($('#inlineRadio1').val());
+            alert($('#inlineRadio2').val());
+            return false;
+        }
+    </script>
 </head>
 <body>
 
@@ -25,25 +28,26 @@
     <form>
         <div class="form-row">
             <div class="col">
-                <input type="text" class="form-control" placeholder="First name">
+                <input type="text" class="form-control" placeholder="First name" id="firName">
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="Last name">
+                <input type="text" class="form-control" placeholder="Last name" id="secName">
             </div>
         </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Description</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Man">
+            <label class="form-check-label" for="inlineRadio1">Man</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Woman">
+            <label class="form-check-label" for="inlineRadio2">Woman</label>
+        </div>
+        <button type="button" class="btn btn-default" onclick="return validate();">Submit</button>
     </form>
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">Description</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-        <label class="form-check-label" for="inlineRadio1">Man</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-        <label class="form-check-label" for="inlineRadio2">Woman</label>
-    </div>
 </div>
 <table class="table table-striped table-dark">
     <thead>
