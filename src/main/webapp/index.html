@@ -11,10 +11,27 @@
         function validate() {
             alert($('#firName').val());
             alert($('#secName').val());
-            alert($('#exampleFormControlTextarea1').val());
-            alert($('#inlineRadio1').val());
-            alert($('#inlineRadio2').val());
+            alert($('#sex').val());
+            alert($('#desc').val());
             return false;
+        }
+    </script>
+    <script>
+        function addRow() {
+            //получаем значение поля usr
+            const fName = $('#firName').val();
+            const sex = $('#sex').val();
+            const lName = $('#secName').val();
+            const desc = $('#exampleFormControlTextarea1').val();
+
+            //получаем ссылку на последний элемент в таблице.
+            //и после него добавляем html
+            $('#table tr:last').after(
+                '<tr><td>' + fName + '</td>' +
+                '<td>' + lName + '</td>' +
+                '<td>' + sex + '</td>' +
+                '<td>' + desc + '</td></tr>'
+            );
         }
     </script>
 </head>
@@ -35,24 +52,21 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="exampleFormControlTextarea1">Description</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label for="desc">Description</label>
+            <textarea class="form-control" id="desc" rows="3"></textarea>
         </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Man">
-            <label class="form-check-label" for="inlineRadio1">Man</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Woman">
-            <label class="form-check-label" for="inlineRadio2">Woman</label>
-        </div>
+        <label for="sex">Example select</label>
+        <select class="form-control" id="sex">
+            <option>Man</option>
+            <option>Woman</option>
+        </select>
         <button type="button" class="btn btn-default" onclick="return validate();">Submit</button>
+        <button type="button" class="btn btn-default" onclick="addRow()">Add row</button>
     </form>
 </div>
-<table class="table table-striped table-dark">
+<table class="table table-striped table-dark" id="table">
     <thead>
     <tr>
-        <th scope="col">#</th>
         <th scope="col">First name</th>
         <th scope="col">Last name</th>
         <th scope="col">Gender</th>
@@ -60,27 +74,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>Man</td>
-        <td>OOP, Design Patterns</td>
-    </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>Man</td>
-        <td>OOP, Design Patterns</td>
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>Kane</td>
-        <td>Man</td>
-        <td>OOP, Design Patterns</td>
-    </tr>
+
     </tbody>
 </table>
 
