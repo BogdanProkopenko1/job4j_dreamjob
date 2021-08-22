@@ -9,10 +9,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
         function validate() {
-            alert($('#firName').val());
-            alert($('#secName').val());
-            alert($('#sex').val());
-            alert($('#desc').val());
+            if ($('#firName').val() === '') {
+                alert($('#firName').attr('title'));
+            } else if ($('#secName').val() === '') {
+                alert($('#secName').attr('title'));
+            } else if ($('#sex').val() === '') {
+                alert($('#sex').attr('title'));
+            } else if ($('#desc').val() === '') {
+                alert($('#desc').attr('title'));
+            }
             return false;
         }
     </script>
@@ -45,18 +50,18 @@
     <form>
         <div class="form-row">
             <div class="col">
-                <input type="text" class="form-control" placeholder="First name" id="firName">
+                <input type="text" class="form-control" placeholder="First name" id="firName" title="Enter first name">
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="Last name" id="secName">
+                <input type="text" class="form-control" placeholder="Last name" id="secName" title="Enter last name">
             </div>
         </div>
         <div class="form-group">
             <label for="desc">Description</label>
-            <textarea class="form-control" id="desc" rows="3"></textarea>
+            <textarea class="form-control" id="desc" rows="3" title="Enter description"></textarea>
         </div>
         <label for="sex">Example select</label>
-        <select class="form-control" id="sex">
+        <select class="form-control" id="sex" title="Choose sex">
             <option>Man</option>
             <option>Woman</option>
         </select>
